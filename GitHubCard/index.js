@@ -53,3 +53,25 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
+// axios.get(https://api.github.com/users/jsoderborg7)
+
+function createCard(user){
+  const card = document.createElement('div');
+  const userImg = document.createElement('img');
+  const info = document.createElement('div');
+  const name = document.createElement('h3');
+  const username = document.createElement('p');
+  const location = document.createElement('p');
+  const profile = document.createElement('p');
+  const followers = document.createElement('p');
+  const following = document.createElement('p');
+  const bio = document.createElement('p');
+
+  card.classList.add("card");
+  info.classList.add("card-info");
+  name.classList.add("name");
+  username.classList.add("username");
+
+  
+}
