@@ -54,7 +54,21 @@ const followersArray = [];
   bigknell
 */
 
-axios.get('https://api.github.com/users/jsoderborg7');
+
+axios.get('https://api.github.com/users/jsoderborg7')
+.then( (response) => {
+  console.log(response)
+  response.data.message.forEach( item => {
+    let newCard = createCard(item)
+    cards.appendChild(newCard)
+  })
+  
+})
+.catch( (err) => {
+  console.log(err)
+})
+
+const cards = document.querySelector('.cards');
 
 function createCard(user){
 
