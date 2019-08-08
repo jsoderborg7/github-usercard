@@ -55,30 +55,15 @@
 */
 
 
-axios.get('https://api.github.com/users/jsoderborg7')
+axios.get(`https://api.github.com/users/jsoderborg7`)
   .then( (github) => {
     console.log(github.data)
-    const cards = document.querySelector('.cards');
+const cards = document.querySelector('.cards');
     cards.appendChild(createCard(github.data))
   })
   .catch( (err) => {
     console.log(err)
   })
-
-  const followersArray = ['shanreed', 'tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
-
-followersArray.forEach(follower =>{
-  axios.get('https://api.github.com/users/${follower}')
-  .then(github =>{
-    console.log('Follower Info: ', github.data);
-    const followerCards = document.querySelector('.cards');
-    followerCards.appendChild(createCard(github.data))
-  })
-  .catch( (err) =>{
-    console.log(err)
-  })
-})
-
 
 
 function createCard(user){
@@ -94,6 +79,16 @@ function createCard(user){
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
+
+  userImg.setAttribute('src', user.avatar_url);
+  name.textContent= user.name; 
+  username.textContent = user.username;
+  location.textContent = user.location;
+  address.textContent = `Profile: ${user.html_url}`;
+  address.setAttribute = ('href', user.html_url); 
+  followers.textContent = `Followers: ${user.followers}`;
+  following.textContent = `Following: ${user.following}`;
+  bio.textContent = user.bio;
 
   card.classList.add("card");
   info.classList.add("card-info");
@@ -113,3 +108,17 @@ function createCard(user){
 
   return card;
 }
+
+  const followersArray = ['shanreed', 'tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell'];
+
+followersArray.forEach(follower =>{
+  axios.get(`https://api.github.com/users/${follower}`)
+  .then(github =>{
+    console.log('Follower Info: ', github.data);
+    const followerCards = document.querySelector('.cards');
+    followerCards.appendChild(createCard(github.data))
+  })
+  .catch( (err) =>{
+    console.log(err)
+  })
+})
