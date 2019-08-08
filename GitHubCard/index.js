@@ -54,9 +54,10 @@ const followersArray = [];
   bigknell
 */
 
-// axios.get(https://api.github.com/users/jsoderborg7)
+axios.get('https://api.github.com/users/jsoderborg7');
 
 function createCard(user){
+
   const card = document.createElement('div');
   const userImg = document.createElement('img');
   const info = document.createElement('div');
@@ -64,6 +65,7 @@ function createCard(user){
   const username = document.createElement('p');
   const location = document.createElement('p');
   const profile = document.createElement('p');
+  const address = document.createElement('a');
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
@@ -73,5 +75,16 @@ function createCard(user){
   name.classList.add("name");
   username.classList.add("username");
 
-  
+  card.appendChild(userImg);
+  card.appendChild(info);
+  info.appendChild(name);
+  info.appendChild(username);
+  info.appendChild(location);
+  info.appendChild(profile);
+  profile.appendChild(address);
+  info.appendChild(followers);
+  info.appendChild(following);
+  info.appendChild(bio);
+
+  return card;
 }
